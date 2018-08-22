@@ -16,19 +16,19 @@
 	<div class="container">
 		<fieldset>
 			<legend>edition de client</legend>
-						<c:choose>
-							<c:when test="${client.getClass().simpleName=='ClientMoral'}">
-								<c:url value="savemoral" var="action"></c:url>
-							</c:when>
-							<c:when test="${client.getClass().simpleName=='ClientEl'}">
-								<c:url value="saveel" var="action"></c:url>
-							</c:when>
-							<c:otherwise>
-								<c:url value="savephysique" var="action"></c:url>
-							</c:otherwise>
+			<c:choose>
+				<c:when test="${client.getClass().simpleName=='ClientMoral'}">
+					<c:url value="savemoral" var="action"></c:url>
+				</c:when>
+				<c:when test="${client.getClass().simpleName=='ClientEl'}">
+					<c:url value="saveel" var="action"></c:url>
+				</c:when>
+				<c:otherwise>
+					<c:url value="savephysique" var="action"></c:url>
+				</c:otherwise>
 
 
-						</c:choose>
+			</c:choose>
 			<form:form action="${action}" method="get" modelAttribute="client">
 				<%-- 				<form:hidden path="version" /> --%>
 				<div class="form-group">
@@ -39,6 +39,7 @@
 				<div class="form-group">
 					<form:label path="nom"> Nom:</form:label>
 					<form:input path="nom" cssClass="form-control" />
+<%-- 					<form:errors path="nom">Ajouter un nom svp</form:errors> --%>
 				</div>
 				<c:choose>
 					<c:when test="${client.getClass().simpleName=='ClientMoral'}">
@@ -83,15 +84,15 @@
 					<form:label path="adresse.ville"> Ville:</form:label>
 					<form:input path="adresse.ville" cssClass="form-control" />
 				</div>
-<!-- 				<div class="form-group"> -->
-<%-- 					<form:label path="login">Login:</form:label> --%>
-<%-- 					<form:select path="login.id" cssClass="form-control"> --%>
-<%-- 						<form:option value="">choisir</form:option> --%>
-<%-- 						<form:options items="${logins}" itemLabel="nom" --%>
-<%-- 							itemValue="id_login"></form:options> --%>
-<%-- 					</form:select> --%>
-<%-- 					<form:errors path="login"></form:errors> --%>
-<!-- 				</div> -->
+				<!-- 				<div class="form-group"> -->
+				<%-- 					<form:label path="login">Login:</form:label> --%>
+				<%-- 					<form:select path="login.id" cssClass="form-control"> --%>
+				<%-- 						<form:option value="">choisir</form:option> --%>
+				<%-- 						<form:options items="${logins}" itemLabel="nom" --%>
+				<%-- 							itemValue="id_login"></form:options> --%>
+				<%-- 					</form:select> --%>
+				<%-- 					<form:errors path="login"></form:errors> --%>
+				<!-- 				</div> -->
 				<div class="form-group">
 					<button type="submit" class="btn btn-success">enregistrer</button>
 				</div>

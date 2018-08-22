@@ -102,12 +102,32 @@ public class ClientController {
 
 	}
 	
+//	@RequestMapping("/reserv")
+//	public ModelAndView findReserv(@RequestParam(name = "id") Long id, Reservation reservation) {
+//		ModelAndView modelAndView = new ModelAndView("client/reserv", "reservation", reservation);
+//		modelAndView.addObject("reservations", clientRepository.findCustomByIdWithReservation(id));
+//		return modelAndView;
+//	}
+	
+//	@RequestMapping("/reserv")
+//    public String reserv(@RequestParam(name = "id") Long id, Model model) {
+//        Optional<Client> opt= clientRepository.findById(id);
+//        if (opt.isPresent()) {
+//            model.addAttribute("reservations", opt.get().getReservations());
+//            return "client/reserv";
+//        }
+//         return "redirect:/client/";
+//    }
+	
 	@RequestMapping("/reserv")
-	public ModelAndView findReserv(@RequestParam(name = "id") Long id, Client client) {
-		ModelAndView modelAndView = new ModelAndView("client/reserv", "client", client);
-		modelAndView.addObject("clients", clientRepository.findCustomByIdWithReservation(id));
-		return modelAndView;
-	}
+    public String reservations(@RequestParam(name = "id") Long id, Model model) {
+        Optional<Client> opt= clientRepository.findCustomByIdWithReservation(id);
+        if (opt.isPresent()) {
+            model.addAttribute("reservations", opt.get().getReservations());
+            return "reserv";
+        }
+         return "redirect:/client/";
+    }
 	
 
 }
