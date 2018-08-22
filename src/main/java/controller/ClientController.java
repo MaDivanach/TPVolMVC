@@ -102,5 +102,12 @@ public class ClientController {
 
 	}
 	
+	@RequestMapping("/reserv")
+	public ModelAndView findReserv(@RequestParam(name = "id") Long id, Client client) {
+		ModelAndView modelAndView = new ModelAndView("client/reserv", "client", client);
+		modelAndView.addObject("clients", clientRepository.findCustomByIdWithReservation(id));
+		return modelAndView;
+	}
+	
 
 }

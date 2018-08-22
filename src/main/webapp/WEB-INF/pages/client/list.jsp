@@ -21,6 +21,7 @@
 				<th>nom</th>
 				<th>prenom</th>
 				<th>siret</th>
+				<th>Reservation</th>
 				<th></th>
 				<th></th>
 			</tr>
@@ -42,6 +43,7 @@
 						${client.siret }
 					</c:if>
 					</td>
+					<td><a href="./reserv?id=${client.id_client}" class="btn btn-success">Voir liste</a></td>
 					<td><a href="./delete?id=${client.id_client}" class="btn btn-danger">supprimer</a></td>
 					<td><a href="./edit?id=${client.id_client}"
 						class="btn btn-primary">edition</a></td>
