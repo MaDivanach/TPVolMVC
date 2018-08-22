@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import model.Reservation;
+import repositories.ClientRepository;
 import repositories.ReservationRepository;
 
 @Controller
@@ -21,6 +22,8 @@ public class ReservationController {
 
 	@Autowired
 	private ReservationRepository reservationRepository;
+	@Autowired
+	private ClientRepository clientRepository;
 	
 	@RequestMapping("")
 	public ModelAndView home() {
@@ -38,6 +41,11 @@ public class ReservationController {
 	public String delete(@RequestParam(name = "id") Long id) {
 		reservationRepository.deleteById(id);
 		return "redirect:/reservation/";
+	}
+	
+	@RequestMapping("/add")
+	public ModelAndView add() {
+		return goEdit(new Reservation());
 	}
 	
 	@RequestMapping("/edit")
@@ -61,9 +69,9 @@ public class ReservationController {
 	}
 	
 	private ModelAndView goEdit(Reservation reservation) {
-		ModelAndView mv = new ModelAndView("article/edit");
+		ModelAndView mv = new ModelAndView("reservation/edit");
 		mv.getModelMap().addAttribute("reservation", reservation);
-		mv.getModelMap().addAttribute("adherents",reservationRepository.findAll());
+		mv.getModelMap().addAttribute("clients",clientRepository.findAll());
 		return mv;
 	}
 }

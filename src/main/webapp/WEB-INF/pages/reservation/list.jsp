@@ -69,7 +69,7 @@
 					</tr>
 				</c:forEach>
 			</table>
-			<a href="./create" class="btn btn-success">Ajouter une réservation</a> 			
+			<a href="./add" class="btn btn-success">Ajouter une réservation</a> 			
 		</div>
 </body>
 </html>
