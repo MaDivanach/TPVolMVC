@@ -30,7 +30,10 @@ public abstract class Client {
 	@Column(name = "id_client")
 	private Long id_client;
 	
-	@Column(name = "nom_client", length=20)
+//	@Version
+//	private int version;
+	
+	@Column(name = "nom_client", length=60)
 	private String nom;
 	
 	@Column(name="tel_client",length=15)
@@ -74,6 +77,15 @@ public abstract class Client {
 		this.adresse = adresse;
 		this.login = login;
 	}
+
+	
+//	public int getVersion() {
+//		return version;
+//	}
+//
+//	public void setVersion(int version) {
+//		this.version = version;
+//	}
 
 	public Client() {
 		super();
