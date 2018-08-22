@@ -47,7 +47,7 @@
 				<c:forEach items="${reservations}" var="reservation">
 					<tr>
 						<td>${reservation.id}</td>
-						<td>${rservation.numero}</td>
+						<td>${reservation.numero}</td>
 						<td>${reservation.date}</td>
 						<td>${reservation.client.id}</td>
 						<td>${reservation.client.getClass().simpleName}</td>
@@ -63,8 +63,8 @@
 						<td>${reservation.passager.id} ${reservation.passager.nom} ${reservation.passager.prenom}</td>
 						<td>${reservation.vol.depart.nom} ${reservation.vol.arrivee.nom} ${reservation.vol.heureDepart} ${reservation.vol.heureArrivee} </td>
 						<td>
-							<a href="./update?id=${article.id}" class="btn btn-warning">Modifier</a> 
-							<a href="./delete?id=${article.id}" class="btn btn-danger">Supprimer</a>
+							<a href="./edit?id=${reservation.id}" class="btn btn-warning">Modifier</a> 
+							<a href="./delete?id=${reservation.id}" class="btn btn-danger">Supprimer</a>
 						</td>
 					</tr>
 				</c:forEach>

@@ -30,24 +30,27 @@
 	<div class="container">
 		<fieldset>
 			<legend>Formulaire Reservations</legend>
-			<form:form action="/save" method="get" modelAttribute="reservation">
+			<form:form action="save" method="get" modelAttribute="reservation">
 				<form:input hidden="hidden" path="version"/>
 				<div class="form-group">
 					<form:label path="id">ID : </form:label>
 					<form:input path="id" cssClass="form-control" readonly="true"/>
 					<form:label path="date">Date de réservation </form:label>
-					<form:input type="date" path="date" cssClass="form-control" readonly="true"/>
+<%-- 					<form:input type="date" path="date" cssClass="form-control"/> --%>
+<%-- 					<form:errors path="date"></form:errors> --%>
 				</div>
 				<div class="form-group">
 					<form:label path="numero">Numéro de réservation </form:label>
 					<form:input type="number" path="numero" cssClass="form-control"/>
 				</div>
 				<div class="form-group">
-					<form:label path="client">Client </form:label>
-					<form:select path="client" cssClass="form-control">
-						<form:option value="">(disponible)</form:option>
-						<form:options items="${clients}" itemLabel="id" itemValue="id"/>
-					</form:select>
+					<label for="clientId">Client </label>
+					<select name="clientId"  class="form-control">
+						<option value="">(aucun)</option>
+						<c:forEach items="${clients}" var="client">
+							<option value="${client.id_client}">${client.nom}</option>
+						</c:forEach>
+					</select>
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-success">Enregistrer</button>
