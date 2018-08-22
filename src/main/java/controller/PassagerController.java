@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import model.Passager;
+import model.Reservation;
 import repositories.PassagerRepository;
 
 @Controller
@@ -62,6 +63,16 @@ public class PassagerController {
 	private String goEdit(Passager passager, Model model) {
 		model.addAttribute("passager", passager);
 		return "passager/edit";
+	}
+
+	@RequestMapping("/reservations")
+	public String reservations(@RequestParam(name = "id") Long id, Model model) {
+		Optional<Passager> opt= passagerRepository.findById(id);
+		if (opt.isPresent()) {
+			model.addAttribute("reservations", opt.get().getReservations());
+			return "reservation/list";
+		}
+		 return "redirect:/passager/";
 	}
 
 }
