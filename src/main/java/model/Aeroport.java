@@ -93,4 +93,7 @@ public class Aeroport {
 		this.escales = escales;
 	}
 
+	public String getDescription() {
+		return "Aeroport de " + this.getNom();
+	}
 }

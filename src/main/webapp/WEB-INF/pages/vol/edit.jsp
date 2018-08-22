@@ -61,11 +61,20 @@
 							type="time" />
 						<form:errors path="heureArrivee"></form:errors>
 					</div>
-					<!-- 					<div> -->
-					<%-- 						<form:label path="prenom">Prenom</form:label> --%>
-					<%-- 						<form:input path="prenom" cssClass="form-control" /> --%>
-					<%-- 						<form:errors path="prenom"></form:errors> --%>
-					<!-- 					</div> -->
+					<div class="form-group">
+						<form:label path="depart.id">Aeroport de départ</form:label>
+						<form:select path="depart.id" cssClass="form-control">
+							<form:option value="" disabled="disabled">Choisissez l'aeroport de départ</form:option>
+							<form:options items="${aeroports}" itemLabel="description" itemValue="id" />
+						</form:select>
+					</div>
+					<div class="form-group">
+						<form:label path="arrivee.id">Aeroport de d'arrivée</form:label>
+						<form:select path="arrivee.id" cssClass="form-control">
+							<form:option value="" disabled="disabled">Choisissez l'aeroport d'arrivée</form:option>
+							<form:options items="${aeroports}" itemLabel="description" itemValue="id" />
+						</form:select>
+					</div>
 
 				</div>
 				<div class="form-group">

@@ -51,7 +51,9 @@
 					<th scope="col">Date d'arrivée</th>
 					<th scope="col">Heure de départ</th>
 					<th scope="col">Heure d'arrivée</th>
-<!-- 					<th scope="col">Numéro de Réservation</th> -->
+					<th scope="col">Départ</th>
+					<th scope="col">Arrivée</th>
+					<th scope="col">Réservations</th>
 					<th scope="col"></th>
 					<th scope="col"></th>
 				</tr>
@@ -63,7 +65,9 @@
 					<td>${vol.dateArrivee}</td>
 					<td>${vol.heureDepart}</td>
 					<td>${vol.heureArrivee}</td>
-<!-- 					<td></td> -->
+					<td>${vol.depart.nom}</td>
+					<td>${vol.arrivee.nom}</td>
+					<td><a href="./detail?id=${vol.id}" class="btn btn-info">Detail</a> </td>
 					<td><a href="./delete?id=${vol.id}"
 						class="btn btn-danger">Supprimer</a></td>
 					<td><a href="./edit?id=${vol.id}" class="btn btn-primary">Editer</a></td>

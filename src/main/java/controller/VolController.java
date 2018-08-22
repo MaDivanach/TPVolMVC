@@ -11,8 +11,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import model.Vol;
+import repositories.AeroportRepository;
 import repositories.VolRepository;
 
 @Controller
@@ -21,8 +23,11 @@ public class VolController {
 
 	@Autowired
 	private VolRepository volRepository;
+	
+	@Autowired
+	private AeroportRepository aeroportRepository;
 
-	@RequestMapping(value = {"/"})
+	@RequestMapping(value = { "/" })
 	public String list(Model model) {
 
 		model.addAttribute("vols", volRepository.findAll());
@@ -43,7 +48,9 @@ public class VolController {
 		Optional<Vol> opt = volRepository.findById(id);
 
 		if (opt.isPresent()) {
+
 			return goEdit(opt.get(), model);
+
 		} else {
 			return goEdit(new Vol(), model);
 
@@ -54,14 +61,19 @@ public class VolController {
 	@RequestMapping("/save")
 	public String save(@Valid @ModelAttribute("vol") Vol vol, BindingResult br, Model model) {
 
-		if (br.hasErrors()) {
-
+		if (vol.getDateArrivee().compareTo(vol.getDateDepart()) < 0) {
 			return goEdit(vol, model);
-
+			
 		} else {
+			if (br.hasErrors()) {
 
-			volRepository.save(vol);
-			return "redirect:/vol/";
+				return goEdit(vol, model);
+
+			} else {
+
+				volRepository.save(vol);
+				return "redirect:/vol/";
+			}
 		}
 
 	}
@@ -75,8 +87,19 @@ public class VolController {
 
 	private String goEdit(Vol vol, Model model) {
 
+		model.addAttribute("aeroports", aeroportRepository.findAll());
 		model.addAttribute("vol", vol);
 		return "vol/edit";
 	}
 
+
+	@RequestMapping("/detail")
+	public ModelAndView detail(@RequestParam(name="id") Long id) {
+		ModelAndView mv = new ModelAndView("reservation/list");
+		Optional<Vol> opt = volRepository.findById(id);
+		if(opt.isPresent()) {
+			mv.getModelMap().addAttribute("reservations", opt.get());
+		}
+		return mv;
+	}
 }
