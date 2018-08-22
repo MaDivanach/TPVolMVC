@@ -6,7 +6,7 @@
 	<artifactId>TPVolMVC</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<description>Vidéoclub</description>
+	<description>TP Vol version MVC</description>
 	<dependencies>
 		<dependency>
 			<groupId>org.postgresql</groupId>
