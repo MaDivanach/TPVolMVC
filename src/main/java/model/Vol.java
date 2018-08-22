@@ -38,11 +38,11 @@ public class Vol {
 	private Date dateArrivee;
 	@Column(name = "heure_depart")
 	@Temporal(TemporalType.TIME)
-	@DateTimeFormat(pattern = "hh:mm:SS")
+	@DateTimeFormat(pattern = "HH:mm")
 	private Date heureDepart;
 	@Column(name = "heure_arrivee")
-	@DateTimeFormat(pattern = "hh:mm:SS")
 	@Temporal(TemporalType.TIME)
+	@DateTimeFormat(pattern = "HH:mm")
 	
 	private Date heureArrivee;
 	@ManyToOne
