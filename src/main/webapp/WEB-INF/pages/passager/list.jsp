@@ -26,10 +26,12 @@
 						<td>${passager.idPassager}</td>
 						<td>${passager.nom}</td>
 						<td>${passager.prenom}</td>
-						<td>${passager.adresse.numero} ${passager.adresse.rue}</td>
+						<td>${passager.adresse.numero}${passager.adresse.rue}</td>
 						<td>${passager.adresse.codePostal}</td>
 						<td>${passager.adresse.ville }</td>
 
+						<td><a href="./reservations?id=${passager.idPassager}"
+							class="btn btn-secondary">Liste reservations</a></td>
 						<td><a href="./delete?id=${passager.idPassager}"
 							class="btn btn-danger">supprimer</a></td>
 						<td><a href="./edit?id=${passager.idPassager}"
@@ -38,6 +40,7 @@
 				</c:forEach>
 		</table>
 		<a href="./add" class="btn btn-primary">ajouter passager</a>
+
 	</div>
 </body>
 </html>
