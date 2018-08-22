@@ -12,22 +12,32 @@
 <title></title>
 </head>
 <body>
-<div class="container">
+	<div class="container">
 		<table class="table">
 			<tr>
 				<th>id</th>
-				<th>nom</th>
-				<th>prenom</th>
-				
-			
-			
-			
-			</tr>
-			
-		
-		
-		
+				<th>Nom</th>
+				<th>Prenom</th>
+				<th>Rue</th>
+				<th>Code postal</th>
+				<th>Ville</th>
+				<c:forEach items="${passagers}" var="passager">
+					<tr>
+						<td>${passager.idPassager}</td>
+						<td>${passager.nom}</td>
+						<td>${passager.prenom}</td>
+						<td>${passager.adresse.numero} ${passager.adresse.rue}</td>
+						<td>${passager.adresse.codePostal}</td>
+						<td>${passager.adresse.ville }</td>
+
+						<td><a href="./delete?id=${passager.idPassager}"
+							class="btn btn-danger">supprimer</a></td>
+						<td><a href="./edit?id=${passager.idPassager}"
+							class="btn btn-primary">edition</a></td>
+					</tr>
+				</c:forEach>
 		</table>
-</div>
+		<a href="./add" class="btn btn-primary">ajouter passager</a>
+	</div>
 </body>
 </html>
