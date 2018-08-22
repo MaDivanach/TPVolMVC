@@ -19,6 +19,7 @@
 				<th>type</th>
 				<th>id</th>
 				<th>nom</th>
+				<th>telephone</th>
 				<th>prenom</th>
 				<th>siret</th>
 				<th>Reservation</th>
@@ -32,6 +33,7 @@
 					<td>${client.getClass().simpleName }</td>
 					<td>${client.id_client }</td>
 					<td>${client.nom }</td>
+					<td>${client.numeroTel }</td>
 					
 					<td>
 					<c:if test="${client.getClass().simpleName!='ClientMoral' }">		
@@ -56,9 +58,7 @@
 		<a href="./addel" class="btn btn-primary">ajout Client El</a>
 		
 		
-		
-		
-<%-- 						<td>${article.emprunteur.prenom } ${article.emprunteur.nom }</td> --%>
+	
 
 	</div>
 </body>
