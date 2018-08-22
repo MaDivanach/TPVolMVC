@@ -15,6 +15,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="vol")
@@ -27,15 +30,20 @@ public class Vol {
 	private Long id;
 	@Column(name = "date_depart")
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateDepart;
 	@Column(name = "date_arrivee")
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateArrivee;
 	@Column(name = "heure_depart")
 	@Temporal(TemporalType.TIME)
+	@DateTimeFormat(pattern = "hh:mm:SS")
 	private Date heureDepart;
 	@Column(name = "heure_arrivee")
+	@DateTimeFormat(pattern = "hh:mm:SS")
 	@Temporal(TemporalType.TIME)
+	
 	private Date heureArrivee;
 	@ManyToOne
 	@JoinColumn(name = "arrivee_id")
@@ -49,12 +57,26 @@ public class Vol {
 	private Set<Escale> escales;
 	@OneToMany(mappedBy="key.vol")
 	private Set<CompagnieAerienneVol> compagnieAeriennes;
+	@Version
+	private int version;
 	
 	
 	
 	public Vol() {
 		super();
 	}
+	
+	
+	public int getVersion() {
+		return version;
+	}
+
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+
 	public Long getId() {
 		return id;
 	}
