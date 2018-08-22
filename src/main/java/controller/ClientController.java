@@ -1,9 +1,14 @@
 package controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import model.Client;
@@ -51,6 +56,58 @@ public class ClientController {
 		return goEdit(new ClientEl());
 	}
 	
+	@RequestMapping("/savemoral")
+	public ModelAndView saveMoral(@ModelAttribute("client") ClientMoral clientMoral, BindingResult br) {
+		return save(clientMoral, br);
+
+	}
+	@RequestMapping("/saveel")
+	public ModelAndView saveEl(@ModelAttribute("client") ClientEl clientEl, BindingResult br) {
+		return save(clientEl, br);
+		
+	}
+	@RequestMapping("/savephysique")
+	public ModelAndView savePhysique(@ModelAttribute("client") ClientPhysique clientPhysique, BindingResult br) {
+		return save(clientPhysique, br);
+		
+	}
+	
+	
+	
+	public ModelAndView save(Client client, BindingResult br) {
+		
+		if(br.hasErrors()) {
+			return goEdit(client);
+		}
+		clientRepository.save(client);
+		
+		return new ModelAndView("redirect:/client/");
+		
+	}
+	
+	
+	@RequestMapping("/delete")
+	public String delete(@RequestParam(name = "id") Long id) {
+		clientRepository.deleteById(id);
+		return "redirect:/client/";
+	}
+	
+	@RequestMapping("/edit")
+	public ModelAndView edit(@RequestParam(name = "id") Long id) {
+		Optional<Client> opt = clientRepository.findById(id);
+		if (opt.isPresent()) {
+			return goEdit(opt.get());
+		}
+		return new ModelAndView("redirect:/client/");
+
+	}
+	
+	@RequestMapping("/reserv")
+	public ModelAndView findReserv(@RequestParam(name = "id") Long id, Client client) {
+		ModelAndView modelAndView = new ModelAndView("client/reserv", "client", client);
+		modelAndView.addObject("clients", clientRepository.findCustomByIdWithReservation(id));
+		return modelAndView;
+	}
 	
 
 }

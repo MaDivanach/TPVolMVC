@@ -13,6 +13,7 @@
 </head>
 <body>
 <div class="container">
+
 		<table class="table">
 			<tr>
 				<th>type</th>
@@ -20,9 +21,12 @@
 				<th>nom</th>
 				<th>prenom</th>
 				<th>siret</th>
+				<th>Reservation</th>
 				<th></th>
 				<th></th>
 			</tr>
+			
+			
 			<c:forEach items="${clients}" var="client">
 				<tr>
 					<td>${client.getClass().simpleName }</td>
@@ -39,38 +43,23 @@
 						${client.siret }
 					</c:if>
 					</td>
-					<td>editer</td>
-					<td>supprimer</td>
+					<td><a href="./reserv?id=${client.id_client}" class="btn btn-success">Voir liste</a></td>
+					<td><a href="./delete?id=${client.id_client}" class="btn btn-danger">supprimer</a></td>
+					<td><a href="./edit?id=${client.id_client}"
+						class="btn btn-primary">edition</a></td>
 				</tr>
 			</c:forEach>
+
 		</table>
-<!-- 		<a href="./addphysique" class="btn btn-primary">ajout Client Physique</a> -->
-<!-- 		<a href="./addmoral" class="btn btn-primary">ajout Client Moral</a> -->
-<!-- 		<a href="./addel" class="btn btn-primary">ajout Client El</a> -->
-<%-- 					<td><c:choose> --%>
-<%-- 							<c:when test="${article.getClass().simpleName=='Dvd'}"> --%>
-<!-- 								Dvd -->
-<%-- 							</c:when> --%>
-<%-- 							<c:otherwise>Blu-ray</c:otherwise> --%>
-<%-- 						</c:choose></td> --%>
-<%-- 					<td>${article.nbDisques }</td> --%>
-<%-- 					<td><c:if --%>
-<%-- 							test="${article.getClass().simpleName=='Dvd' && article.bonus}"> --%>
-<!-- 							<input type="checkbox" checked="checked" disabled="disabled" /> -->
-
-<%-- 						</c:if></td> --%>
-
-
-
-<%-- 					<td><c:if --%>
-<%-- 							test="${article.getClass().simpleName=='Blueray' && article.troisD}"> --%>
-<!-- 							<input type="checkbox" checked="checked" disabled="disabled" /> -->
-
-<%-- 						</c:if></td> --%>
+		<a href="./addphysique" class="btn btn-primary">ajout Client Physique</a>
+		<a href="./addmoral" class="btn btn-primary">ajout Client Moral</a>
+		<a href="./addel" class="btn btn-primary">ajout Client El</a>
+		
+		
+		
+		
 <%-- 						<td>${article.emprunteur.prenom } ${article.emprunteur.nom }</td> --%>
-<%-- 					<td><a href="./delete?id=${article.id}" class="btn btn-danger">supprimer</a></td> --%>
-<%-- 					<td><a href="./edit?id=${article.id}" --%>
-<!-- 						class="btn btn-primary">edition</a></td> -->
+
 	</div>
 </body>
 </html>
