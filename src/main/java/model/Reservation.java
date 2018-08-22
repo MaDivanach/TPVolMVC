@@ -11,11 +11,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Version;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "reservation")
-@SequenceGenerator(name = "seqReservation", sequenceName = "seq_reservation", initialValue = 1, allocationSize = 1)
+@SequenceGenerator(name = "seqReservation", sequenceName = "seq_reservation", initialValue = 100, allocationSize = 1)
 public class Reservation {
 
 	@Id
@@ -25,6 +29,8 @@ public class Reservation {
 	@Version
 	private int version;
 	@Column(name = "date")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date date;
 	@Column(name = "numero")
 	private Long numero;
