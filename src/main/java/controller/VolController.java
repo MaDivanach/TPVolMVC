@@ -93,13 +93,14 @@ public class VolController {
 	}
 
 
+	
 	@RequestMapping("/detail")
-	public ModelAndView detail(@RequestParam(name="id") Long id) {
-		ModelAndView mv = new ModelAndView("reservation/list");
-		Optional<Vol> opt = volRepository.findById(id);
-		if(opt.isPresent()) {
-			mv.getModelMap().addAttribute("reservations", opt.get());
-		}
-		return mv;
-	}
+    public String reservations(@RequestParam(name = "id") Long id, Model model) {
+        Optional<Vol> opt= volRepository.findCustomByIdWithReservation(id);
+        if (opt.isPresent()) {
+            model.addAttribute("reservations", opt.get().getReservations());
+            return "reservation/list";
+        }
+         return "redirect:/vol/";
+    }
 }
