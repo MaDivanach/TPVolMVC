@@ -67,7 +67,7 @@ public class PassagerController {
 
 	@RequestMapping("/reservations")
 	public String reservations(@RequestParam(name = "id") Long id, Model model) {
-		Optional<Passager> opt= passagerRepository.findById(id);
+		Optional<Passager> opt= passagerRepository.findCustomByIdWithReservation(id);
 		if (opt.isPresent()) {
 			model.addAttribute("reservations", opt.get().getReservations());
 			return "reservation/list";
