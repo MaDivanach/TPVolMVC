@@ -60,7 +60,7 @@
 								${reservation.client.siret}
 							</c:if>
 						</td>
-						<td>${reservation.passager.id} ${reservation.passager.nom} ${reservation.passager.prenom}</td>
+						<td>${reservation.passager.idPassager} ${reservation.passager.nom} ${reservation.passager.prenom}</td>
 						<td>${reservation.vol.depart.nom} ${reservation.vol.arrivee.nom} ${reservation.vol.heureDepart} ${reservation.vol.heureArrivee} </td>
 						<td>
 							<a href="./update?id=${article.id}" class="btn btn-warning">Modifier</a> 
