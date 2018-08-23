@@ -53,6 +53,20 @@
 					</select>
 				</div>
 				<div class="form-group">
+					<form:label path="vol.id">Vol </form:label>
+					<form:select path="vol.id" cssClass="form-control">
+						<form:option value="">(aucun)</form:option>
+						<form:options items="${vols}" itemLabel="numero" itemValue="id"/>
+					</form:select>
+				</div>
+				<div class="form-group">
+					<form:label path="passager.idPassager">Passager </form:label>
+					<form:select path="passager.idPassager" cssClass="form-control">
+						<form:option value="">(aucun)</form:option>
+						<form:options items="${passagers}" itemLabel="nom" itemValue="idPassager"/>
+					</form:select>
+				</div>
+				<div class="form-group">
 					<button type="submit" class="btn btn-success">Enregistrer</button>
 					<button type="reset" class="btn btn-warning">Réinitialiser</button> 
 					<a href="./" class="btn btn-danger">Quitter</a>

@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.Date;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -15,7 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import model.Reservation;
 import repositories.ClientRepository;
+import repositories.PassagerRepository;
 import repositories.ReservationRepository;
+import repositories.VolRepository;
 
 @Controller
 @RequestMapping("/reservation")
@@ -25,6 +26,10 @@ public class ReservationController {
 	private ReservationRepository reservationRepository;
 	@Autowired
 	private ClientRepository clientRepository;
+	@Autowired
+	private VolRepository volRepository;
+	@Autowired
+	private PassagerRepository passagerRepository;
 
 	@RequestMapping("")
 	public ModelAndView home() {
@@ -67,6 +72,12 @@ public class ReservationController {
 			if(clientId!=null && clientRepository.findById(clientId).isPresent()) {
 				reservation.setClient(clientRepository.findById(clientId).get());
 			}
+			if(reservation.getVol() != null && reservation.getVol().getId() == null) {
+				reservation.setVol(null);
+			}
+			if(reservation.getPassager() != null && reservation.getPassager().getIdPassager() == null) {
+				reservation.setPassager(null);
+			}
 			reservationRepository.save(reservation);
 			return new ModelAndView("redirect:/reservation/");
 		}
@@ -76,6 +87,8 @@ public class ReservationController {
 		ModelAndView mv = new ModelAndView("reservation/edit");
 		mv.getModelMap().addAttribute("reservation", reservation);
 		mv.getModelMap().addAttribute("clients", clientRepository.findAll());
+		mv.getModelMap().addAttribute("vols", volRepository.findAll());
+		mv.getModelMap().addAttribute("passagers", passagerRepository.findAll());
 		return mv;
 	}
 }
